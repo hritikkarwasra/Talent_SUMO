@@ -2,6 +2,49 @@ from enum import Enum
 from pyexpat import model
 from django.db import models
 
+class WhoCanInitiate(Enum):
+    BOT = 'bot'
+    USER = 'user'
+    BOTH = 'both'
+class Track(Enum):
+    HIRE = 'hire'
+    LEARN = 'learn'
+class JobTitle(Enum):
+    FRONTEND = 'frontend',
+    BACKEND = 'backend',
+    FULLSTACK = 'fullstack',
+    HR = 'Hr'
+class PlanName (Enum):
+  STANDARD = 'standard'
+  PREMIUM = 'premium'
+  ENTERPRISE = 'enterprise'
+
+class interaction (Enum):
+  ONE = 'one'
+  TEN = 'ten'
+  UNLIMITED = 'unlimited'
+
+class interactionType (Enum):
+  AUDIO = 'audio'
+  AUDIO_VIDEO = 'audio_video'
+  ANY = 'any'
+
+
+class Responce (Enum):
+  UNLIMITED = 'unlimited'
+
+
+class Time (Enum):
+  ONE_QUATER = 'one_quarter'
+  UNLIMITED = 'unlimited'
+
+
+class AnswerFormat (Enum):
+  ONE_QUATER = 'one_quarter'
+  UNLIMITED = 'unlimited'
+
+
+
 class Employee_data(models.Model):
     employee_name = models.CharField(max_length=50)
     employee_email = models.CharField(max_length=50)
@@ -14,19 +57,6 @@ class Company_Users(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class tests(models.Model): 
-    class WhoCanInitiate(Enum):
-        BOT = 'bot'
-        USER = 'user'
-        BOTH = 'both'
-    class Track(Enum):
-        HIRE = 'hire'
-        LEARN = 'learn'
-    class JobTitle(Enum):
-        FRONTEND = 'frontend',
-        BACKEND = 'backend',
-        FULLSTACK = 'fullstack',
-        HR = 'Hr',
-
     access_code = models.CharField(max_length=20)
     who_can_initiate = WhoCanInitiate
     expiry_date = models.DateTimeField
@@ -92,3 +122,14 @@ class Scores(models.Model):
     content_score = models.IntegerField
     overall = models.IntegerField
     
+class Score_per_Question(models.Model):
+    score_id = models.BigIntegerField
+    question_id = models.BigIntegerField
+    likeability = models.IntegerField
+    charm = models.IntegerField
+    confidence = models.IntegerField
+    resume_score = models.IntegerField
+    fluency = models.IntegerField
+    content = models.IntegerField
+    overall = models.IntegerField
+
