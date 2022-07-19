@@ -1,5 +1,4 @@
 from enum import Enum
-from pyexpat import model
 from django.db import models
 
 class WhoCanInitiate(Enum):
@@ -30,7 +29,7 @@ class interactionType (Enum):
   ANY = 'any'
 
 
-class Responce (Enum):
+class Response (Enum):
   UNLIMITED = 'unlimited'
 
 
@@ -133,3 +132,58 @@ class Score_per_Question(models.Model):
     content = models.IntegerField
     overall = models.IntegerField
 
+class questions(models.Model):
+    question = models.CharField(max_length=2000)
+    answer_format = AnswerFormat
+    ideal_answer = models.CharField(max_length=20)
+    test_id = models.BigIntegerField
+    created_at = models.DateTimeField(auto_now_add=True)
+    createdby_id = models.BigIntegerField
+    updated_at = models.DateTimeField(auto_now=True)
+    updatedby_id = models.BigIntegerField
+    should_score = models.BooleanField
+    is_active = models.BooleanField
+    Indexes = test_id
+
+class plan(models.Model):
+    name = PlanName
+    interaction_allowed = interaction
+    interaction_type_allowed = interactionType
+    responses = Response
+    time = Time
+    created_at = models.DateTimeField(auto_now_add=True)
+    createdby_id = models.BigIntegerField
+    updated_at = models.DateTimeField(auto_now=True)
+    updatedby_id = models.BigIntegerField
+    is_active = models.BooleanField
+
+class notifications(models.Model):
+    interaction_welcome = models.CharField(max_length=500)
+    interaction_instruction = models.CharField(max_length=500)
+    interaction_compietion_message = models.CharField(max_length=500)
+    bot_error_message = models.CharField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    createdby_id = models.BigIntegerField
+    updated_at = models.DateTimeField(auto_now=True)
+    updatedby_id = models.BigIntegerField
+    is_active = models.BooleanField
+
+class individual_reports(models.Model):
+    track = Track
+    initial_box = models.CharField
+    letter_text = models.CharField
+    rating_variable = models.CharField
+    pace_text = models.CharField
+    power_word_text = models.CharField
+    volume_and_pitch = models.CharField
+    word_cloud_text = models.CharField
+    sentiment_analysis = models.CharField
+    gesture_text = models.CharField
+    content_rating_text = models.CharField
+    
+class individual_reports(models.Model):
+    track = Track
+    initial_box = models.CharField
+    letter_text = models.CharField
+    rating_variable = models.CharField
+    
