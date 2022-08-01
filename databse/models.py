@@ -3,72 +3,73 @@
 
 from datetime import datetime
 from email.mime import audio
-from tkinter.messagebox import NO
 from unittest.util import _MAX_LENGTH
 from urllib import response
 from django.db import models
 from django.forms import CharField
 
 
-Choices_Track = {
+Choices_Track = (
   ('hire', 'Hire'),
-  ('learn' , 'Learn')
-}
+  ('learn' , 'Learn'),
+)
 
-Choices_WhoCanInitiate = {
+Choices_WhoCanInitiate = (
   ('bot', 'Bot'),
-  ('user', 'User')
-  ('both', 'Both')
-}
-Choices_JobTitle = {
+  ('user', 'User'),
+  ('both', 'Both'),
+)
+Choices_JobTitle = (
   ('backend', 'Backend'),
   ('frontend', 'Frontend'),
   ('fullStack', 'Fullstack'),
   ('hr','Hr')
-}
-Choices_Interview_mode={
+)
+
+Choices_Interview_mode=(
     ('audio', 'Audio'),
-    ('video', 'Video')
-}
-Choices_Interview_channel= {
+    ('video', 'Video'),
+)
+
+Choices_Interview_channel= (
     ('slack', 'SLACK'),
     ('whatsapp', 'WHATSAPP'),
     ('telegram', 'TELEGRAM'),
-}
+)
 
-Choices_Plan_Name = {
-    ('standard', 'Standard')
-    ('premium', 'Premium')
-    ('enterprise', 'Enterprise')
-}
+Choices_Plan_Name = (
+    ('standard', 'Standard'),
+    ('premium', 'Premium'),
+    ('enterprise', 'Enterprise'),
+)
 
-Choices_Interaction ={
+Choices_Interaction =(
     ('one','One'),
     ('ten', 'Ten'),
     ('unlimited', 'Unlimited'),
-} 
+) 
 
-Choices_InteractionType={
+Choices_InteractionType=(
     ('audio','audio'),
     ('audio_video','audio_video'),
     ('any','any'),
 
-}
+)
 
-Choices_Responce= {
-    ('unlimited', 'unlimited')
-}
+Choices_Responce= (
+    ('unlimited', 'unlimited'),
+)
 
-Choices_Time = {
+Choices_Time = (
     ('one_quarter', 'one_quarter'),
     ('unlimited', 'unlimited'),
-}
+)
 
-Choices_AnswerFormat = {
+Choices_AnswerFormat = (
     
     ('one_quarter', 'one_quarter'),
     ('unlimited', 'unlimited'),
-}
+)
 
 class Candidates(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -87,7 +88,7 @@ class Plan(models.Model):
     interaction_allowed  = models.CharField(max_length=50, choices=Choices_Interaction)
     interaction_type_allowed = models.CharField(max_length=50, choices=Choices_InteractionType)
     responces = models.CharField(max_length=50, choices=Choices_Responce)
-    time_ = models.CharField(max_length=50, choices=Choices_Time)
+    time_at= models.CharField(max_length=50, choices=Choices_Time)
     created_at= models.DateTimeField(default=datetime.now)
     createdby_id = models.BigIntegerField(default= 100)
     updated_at= models.DateTimeField(default=datetime.now)
@@ -108,7 +109,7 @@ class Companies(models.Model):
 
 
 class Notifications(models.Model):
-    id = models.BigIntegerField(max_length=10)
+    id = models.BigIntegerField(max_length=10, primary_key=True)
     interaction_welcome = models.CharField(max_length= 500)
     interaction_instruction = models.CharField(max_length= 500)
     interaction_completion_message = models.CharField(max_length= 500)
